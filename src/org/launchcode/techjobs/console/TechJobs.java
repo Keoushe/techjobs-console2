@@ -61,7 +61,7 @@ public class TechJobs {
                 String searchTerm = in.nextLine();
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
+                    printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
                 }
@@ -110,7 +110,23 @@ public class TechJobs {
 
     // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
+        if (someJobs.isEmpty()) {
+            System.out.println("job list is empty");
+        } else {
 
-        System.out.println("printJobs is not implemented yet");
+
+        for (HashMap<String, String> jobArr : someJobs) {
+            System.out.println("*****");
+
+            for (String keys : jobArr.keySet()) {
+                System.out.println(keys + " : " + jobArr.get(keys));
+            }
+
+        }
     }
+    }
+//    public static void  findByValue() {
+////        searchBycollumn litterally did this make a neseted for : loop to check the value or keys and make sure that what's being added isn't already there
+//
+//    }
 }
