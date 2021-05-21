@@ -62,11 +62,21 @@ public class JobData {
         loadData();
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+        ArrayList<Map.Entry<String, String>> seperateKeys = new ArrayList<>();
+//        row.keySet() will return the keys of allJobs [position type, name, employer,] etc
+//            col with row.keySet() as the second for each loop produces keysets in printable lines like the list
+//        write if statement if row.values() contains search add to jobs
+//        row.values has all skills or search terms
 
-        for (HashMap<String, String> col : allJobs){
-            for(Map.Entry<String, String> row: col.entrySet()){
-                if(row.getValue().toLowerCase().contains(searchTerm.toLowerCase())){
-                    jobs.add(col);
+        for (HashMap<String, String> row : allJobs){
+            System.out.println("******");
+            for (String col: row.keySet()){
+//                System.out.println(col + " : " + row.get(col));
+//                System.out.println(row.values());
+                String val = row.get(col);
+                if (val.toLowerCase().contains(searchTerm.toLowerCase())){
+                    jobs.add(row);
+                    break;
                 }
             }
         }
@@ -94,11 +104,14 @@ public class JobData {
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
         for (HashMap<String, String> row : allJobs) {
+            for (String col: row.keySet()){
+                String aValue = row.get(column);
 
-            String aValue = row.get(column);
+                if (aValue.toLowerCase().contains(value.toLowerCase())) {
+                    jobs.add(row);
+            }
 
-            if (aValue.contains(value)) {
-                jobs.add(row);
+
             }
         }
 
